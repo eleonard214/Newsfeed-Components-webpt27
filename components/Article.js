@@ -114,3 +114,56 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+
+function articleMaker(data){
+  const articleContainer = document.createElement('div')
+  articleContainer.classList.add("article")
+
+  const artTitle = document.createElement('h2')
+  artTitle.textContent = (data.title)
+  articleContainer.appendChild(artTitle)
+
+  const artDate = document.createElement('p')
+  artDate.textContent = (data.date)
+  articleContainer.appendChild(artDate)
+
+  const artPara1 = document.createElement('p')
+  artPara1.textContent = (data.firstParagraph)
+  articleContainer.appendChild(artPara1)
+
+  const artPara2 = document.createElement('p')
+  artPara2.textContent = (data.secondParagraph)
+  articleContainer.appendChild(artPara2)
+
+  const artPara3 = document.createElement('p')
+  artPara3.textContent = (data.thirdParagraph)
+  articleContainer.appendChild(artPara3)
+
+  const artSpan = document.createElement('span')
+  artSpan.classList.add('expandButton')
+  artSpan.textContent = "+"
+  artSpan.addEventListener('click', () => {
+    articleContainer.classList.toggle('article-open')
+  })
+
+  articleContainer.appendChild(artSpan)
+
+  return articleContainer
+}
+const newArticle = {
+  title: "Saddest Day",
+  date: 'Nov 19, 2020',
+  firstParagraph: 'Supernatural Finale',
+  secondParagraph: 'Dean dies, again',
+  thirdParagraph: 'Sam dies, again'
+}
+
+data.push(newArticle)
+
+
+let articles = document.querySelector('.articles')
+
+data.forEach((article) => {
+  articles.appendChild(articleMaker(article))
+})
